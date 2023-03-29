@@ -16,7 +16,7 @@ const commonConfig = {
 const musicConfig = {
   ...commonConfig,
   key: "music", // tên muốn lưu dưới local
-  whitelist: ["curSongId"], // những cái muốn lưu dưới local
+  whitelist: ["curSongId", "curSongData", "curAlbumId"], // những cái muốn lưu dưới local
 };
 
 const rootReducer = combineReducers({

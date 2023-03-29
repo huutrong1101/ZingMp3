@@ -13,6 +13,7 @@ const SongItem = ({
   order,
   percent,
   style,
+  sm,
 }) => {
   const dispatch = useDispatch();
 
@@ -43,13 +44,17 @@ const SongItem = ({
         <img
           src={thumbnail}
           alt="thumbnail"
-          className="w-[60px] h-[60px] object-cover rounded-md"
+          className={`${
+            sm ? "w-[40px] h-[40px]" : "w-[60px] h-[60px]"
+          }  object-cover rounded-md`}
         />
         <div className="flex flex-col">
           <span className="text-sm font-semibold">
             {title?.length >= 30 ? `${title?.slice(0, 30)}...` : title}
           </span>
-          <span className="text-xs opacity-70">{artists}</span>
+          <span className="text-xs opacity-70">
+            {artists?.length >= 30 ? `${artists?.slice(0, 30)}...` : artists}
+          </span>
           {releaseDate && (
             <span className="text-xs text-gray-700">
               {moment(releaseDate * 1000).fromNow()}

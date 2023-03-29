@@ -22,6 +22,7 @@ const Album = () => {
   const { isPlaying } = useSelector((state) => state.music);
 
   useEffect(() => {
+    dispatch(actions.setCurAlbumId(pid));
     const fetchDetailPlaylist = async () => {
       dispatch(actions.loading(true));
       const response = await apis.apiGetDetaiPlaylist(pid);
@@ -35,7 +36,6 @@ const Album = () => {
   }, [pid]);
 
   useEffect(() => {
-    console.log(location.state?.playAlbum);
     if (location.state?.playAlbum) {
       const randomSong =
         Math.round(Math.random() * playListData?.song?.items?.length) - 1;
@@ -89,7 +89,7 @@ const Album = () => {
           )}K người yêu thích`}</span>
         </div>
       </div>
-      <Scrollbars style={{ width: "100%", height: "75%" }}>
+      <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
         <div className="flex-auto mb-40">
           <span className="text-sm">
             <span className="text-gray-600">Lời tựa </span>

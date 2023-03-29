@@ -30,6 +30,7 @@ import {
 } from "react-icons/bs";
 import { CiRepeat, CiShuffle } from "react-icons/ci";
 import { TbRepeatOnce } from "react-icons/tb";
+import { ImBin } from "react-icons/im";
 
 const icons = {
   MdOutlineLibraryMusic,
@@ -57,6 +58,7 @@ const icons = {
   BsFillVolumeUpFill,
   BsFillVolumeMuteFill,
   BsFillVolumeDownFill,
+  ImBin,
 };
 
 export default icons;
