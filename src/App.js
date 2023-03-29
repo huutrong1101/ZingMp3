@@ -1,24 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  Home,
+  Public,
+  Login,
+  Personal,
+  Album,
+  WeekRank,
+  ZingChart,
+} from "./containers/public";
+import { Routes, Route } from "react-router-dom";
+import path from "./ultis/path";
+import { useEffect } from "react";
+import * as actions from "./store/actions";
+import { useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actions.getHome());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+        <Routes>
+          <Route path={path.PUBLIC} element={<Public />}>
+            <Route path={path.HOME} element={<Home />} />
+            <Route path={path.LOGIN} element={<Login />} />
+            <Route path={path.MY__MUSIC} element={<Personal />} />
+            <Route path={path.ALBUM__TITLE__PID} element={<Album />} />
+            <Route path={path.PLAYLIST_TITLE_PID} element={<Album />} />
+            <Route path={path.WEEKRANK_TITLE_PID} element={<WeekRank />} />
+            <Route path={path.ZING_CHART} element={<ZingChart />} />
+
+            <Route path={path.STAR} element={<Home />} />
+          </Route>
+        </Routes>
+      </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </>
   );
 }
 
