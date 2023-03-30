@@ -41,7 +41,10 @@ const Public = () => {
         )}
       </div>
       <div className="fixed z-50 bottom-0 left-0 right-0 h-[90px]">
-        <Player setIsShowRightSidebar={setIsShowRightSidebar} />
+        <Player
+          setIsShowRightSidebar={setIsShowRightSidebar}
+          isShowRightSidebar={isShowRightSidebar}
+        />
       </div>
     </div>
   );

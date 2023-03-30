@@ -32,7 +32,7 @@ const {
 
 var intervalId;
 
-const Player = ({ setIsShowRightSidebar }) => {
+const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
   const [audio, setAudio] = useState(new Audio());
 
   const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
@@ -286,7 +286,9 @@ const Player = ({ setIsShowRightSidebar }) => {
 
         <span
           onClick={() => setIsShowRightSidebar((prev) => !prev)}
-          className="p-1 rounded-sm cursor-pointer bg-main-500 opacity-90 hover:opacity-100"
+          className={`p-1 rounded-sm cursor-pointer opacity-90 hover:opacity-100 ${
+            isShowRightSidebar ? "bg-main-500" : ""
+          }`}
         >
           <BsMusicNoteList size={24} />
         </span>

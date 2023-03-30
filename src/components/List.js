@@ -8,6 +8,8 @@ const { BsMusicNoteBeamed } = icons;
 
 const List = ({ songData }) => {
   const dispatch = useDispatch();
+
+  console.log(songData);
   return (
     <div
       className="flex items-center justify-between p-[10px] border-t border-[rgba(0,0,0,0.05)] hover:bg-[#DDE4E4] cursor-pointer"
@@ -15,6 +17,14 @@ const List = ({ songData }) => {
         dispatch(actions.setCurSongId(songData?.encodeId));
         dispatch(actions.play(true));
         dispatch(actions.playAlbum(true));
+        dispatch(
+          actions.setRecent({
+            thumbnail: songData?.thumbnail,
+            title: songData?.title,
+            sid: songData?.encodeId,
+            artists: songData?.artistsNames,
+          })
+        );
       }}
     >
       <div className="flex items-center flex-1 gap-3">
