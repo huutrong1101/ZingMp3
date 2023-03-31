@@ -15,6 +15,7 @@ import {
   AiOutlineArrowRight,
   AiFillHeart,
   AiOutlineHeart,
+  AiOutlineUserAdd,
 } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import {
@@ -59,6 +60,7 @@ const icons = {
   BsFillVolumeMuteFill,
   BsFillVolumeDownFill,
   ImBin,
+  AiOutlineUserAdd,
 };
 
 export default icons;

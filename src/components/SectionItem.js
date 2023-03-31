@@ -61,7 +61,11 @@ const SectionItem = ({ item, data }) => {
         />
       </div>
       <span className="flex flex-col">
-        <span className="font-semibold">{item?.title}</span>
+        <span className="font-semibold">
+          {item?.title?.length > 30
+            ? item?.title.slice(0, 30) + "..."
+            : item?.title}
+        </span>
         {data?.sectionId === "h100" ? (
           <span>{item?.artistsNames}</span>
         ) : (

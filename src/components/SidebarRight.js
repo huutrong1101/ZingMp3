@@ -73,7 +73,7 @@ const SidebarRight = () => {
                     title={item?.title}
                     artists={item?.artists}
                     songData={item}
-                    sm
+                    size="w-[40px] h-[40px]"
                   />
                 ))}
               </div>
@@ -84,11 +84,12 @@ const SidebarRight = () => {
         <div className="flex flex-col flex-auto w-full px-2">
           <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
             <SongItem
+              key={curSongData?.encodeId}
               thumbnail={curSongData?.thumbnail}
               title={curSongData?.title}
               artists={curSongData?.artistsNames}
               songData={curSongData}
-              sm
+              size="w-[40px] h-[40px]"
               style="bg-main-500 text-white"
             />
             <div className="flex flex-col text-black pt-[15px] px-[2] pb-[5px]">
@@ -110,7 +111,7 @@ const SidebarRight = () => {
                       title={item?.title}
                       artists={item?.artistsNames}
                       songData={item}
-                      sm
+                      size="w-[40px] h-[40px]"
                     />
                   ))}
                 </div>

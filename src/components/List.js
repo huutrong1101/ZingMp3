@@ -6,10 +6,8 @@ import * as actions from "../store/actions";
 
 const { BsMusicNoteBeamed } = icons;
 
-const List = ({ songData }) => {
+const List = ({ songData, isHideAlbum }) => {
   const dispatch = useDispatch();
-
-  console.log(songData);
   return (
     <div
       className="flex items-center justify-between p-[10px] border-t border-[rgba(0,0,0,0.05)] hover:bg-[#DDE4E4] cursor-pointer"
@@ -28,9 +26,11 @@ const List = ({ songData }) => {
       }}
     >
       <div className="flex items-center flex-1 gap-3">
-        <span>
-          <BsMusicNoteBeamed />
-        </span>
+        {!isHideAlbum && (
+          <span>
+            <BsMusicNoteBeamed />
+          </span>
+        )}
         <img
           src={songData?.thumbnail}
           alt="thumbnailM"
@@ -42,15 +42,17 @@ const List = ({ songData }) => {
               ? `${songData?.title?.slice(0, 30)}...`
               : songData?.title}
           </span>
-          <span>{songData?.artistsNames}</span>
+          <span className="text-xs opacity-70">{songData?.artistsNames}</span>
         </span>
       </div>
-      <div className="flex items-center justify-center flex-1">
-        {songData?.album?.title?.length > 30
-          ? `${songData?.album?.title?.slice(0, 30)}...`
-          : songData?.album?.title}
-      </div>
-      <div className="flex justify-end flex-1">
+      {!isHideAlbum && (
+        <div className="flex items-center justify-center flex-1">
+          {songData?.album?.title?.length > 30
+            ? `${songData?.album?.title?.slice(0, 30)}...`
+            : songData?.album?.title}
+        </div>
+      )}
+      <div className="flex justify-end flex-1 text-xs opacity-70">
         {moment.utc(songData?.duration * 1000).format("mm:ss")}
       </div>
     </div>
