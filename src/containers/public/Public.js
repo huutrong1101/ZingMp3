@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import {
   Player,
   SidebarLeft,
@@ -8,11 +8,25 @@ import {
   Loading,
 } from "../../components";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../../store/actions";
 
 const Public = () => {
+  const dispatch = useDispatch();
+
   const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
-  const { isLoading } = useSelector((state) => state.app);
+
+  const { singer } = useParams();
+
+  const { isLoading, scrollTop } = useSelector((state) => state.app);
+
+  const handleScrollTop = (e) => {
+    if (singer) {
+      e.target.scrollTop === 0
+        ? dispatch(actions.zerioScrollTop(true))
+        : dispatch(actions.zerioScrollTop(false));
+    }
+  };
   return (
     <div className="relative flex flex-col w-full h-screen bg-main-300">
       <div className="flex flex-auto w-full h-full">
@@ -25,11 +39,20 @@ const Public = () => {
               <Loading />
             </div>
           )}
-          <div className="h-[70px] flex-none px-[59px] flex items-center">
+          <div
+            className={`${
+              scrollTop ? "bg-transparent" : "bg-main-300"
+            } h-[70px] fixed top-0 left-[240px] right-[300px] px-[59px] z-50 flex items-center`}
+          >
             <Header />
           </div>
+
           <div className="flex-auto w-full">
-            <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
+            <Scrollbars
+              onScroll={handleScrollTop}
+              autoHide
+              style={{ width: "100%", height: "100%" }}
+            >
               <Outlet />
             </Scrollbars>
           </div>

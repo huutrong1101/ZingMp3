@@ -149,32 +149,30 @@ const ChartSection = () => {
               Xem thêm
             </Link>
           </div>
-          {data && (
-            <div className="flex-7 h-[90%] relative">
-              <Line ref={chartRef} data={data} options={options} />
-              <div
-                className="tooltip"
-                style={{
-                  top: tooltip.top,
-                  left: tooltip.left,
-                  position: "absolute",
-                  opacity: tooltip.opacity,
-                }}
-              >
-                <SongItem
-                  thumbnail={
-                    rank?.find((i) => i.encodeId === tooltipData)?.thumbnail
-                  }
-                  title={rank?.find((i) => i.encodeId === tooltipData)?.title}
-                  artists={
-                    rank?.find((i) => i.encodeId === tooltipData)?.artistsNames
-                  }
-                  songData={rank?.find((i) => i.encodeId === tooltipData)}
-                  style="bg-white"
-                />
-              </div>
+          <div className="flex-7 h-[90%] relative">
+            {data && <Line ref={chartRef} data={data} options={options} />}
+            <div
+              className="tooltip"
+              style={{
+                top: tooltip.top,
+                left: tooltip.left,
+                position: "absolute",
+                opacity: tooltip.opacity,
+              }}
+            >
+              <SongItem
+                thumbnail={
+                  rank?.find((i) => i.encodeId === tooltipData)?.thumbnail
+                }
+                title={rank?.find((i) => i.encodeId === tooltipData)?.title}
+                artists={
+                  rank?.find((i) => i.encodeId === tooltipData)?.artistsNames
+                }
+                songData={rank?.find((i) => i.encodeId === tooltipData)}
+                style="bg-white"
+              />
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

@@ -9,6 +9,8 @@ import {
   Search,
   SearchSongs,
   SearchAll,
+  Singer,
+  SearchPlaylist,
 } from "./containers/public";
 import { Routes, Route } from "react-router-dom";
 import path from "./ultis/path";
@@ -40,7 +42,10 @@ function App() {
             <Route path={path.SEARCH} element={<Search />}>
               <Route path={path.ALL} element={<SearchAll />} />
               <Route path={path.SONG} element={<SearchSongs />} />
+              <Route path={path.PLAYLIST_SEARCH} element={<SearchPlaylist />} />
             </Route>
+            <Route path={path.HOME__SINGER} element={<Singer />} />
+            <Route path={path.HOME__ARTIST__SINGER} element={<Singer />} />
 
             <Route path={path.STAR} element={<Home />} />
           </Route>

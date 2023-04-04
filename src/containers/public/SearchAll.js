@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { handleNumber } from "../../ultis/fn";
 import { SongItem, List, SectionItem, Artist } from "../../components";
+import { Link } from "react-router-dom";
 
 const SearchAll = () => {
   const { searchData } = useSelector((state) => state.music);
@@ -14,7 +15,10 @@ const SearchAll = () => {
         <h3 className="mb-5 text-lg font-bold">Nổi bật</h3>
         <div className="flex gap-8 ">
           {searchData?.top && (
-            <div className="cursor-pointer p-[10px] flex flex-1 gap-8 items-center bg-main-200 rounded-md">
+            <Link
+              to={searchData.artists[0].link}
+              className="cursor-pointer p-[10px] flex flex-1 gap-8 items-center bg-main-200 rounded-md"
+            >
               <img
                 src={searchData?.top?.thumbnail}
                 alt="avatar"
@@ -22,6 +26,7 @@ const SearchAll = () => {
                   searchData.top.objectType === "artist" ? "rounded-full" : ""
                 }`}
               />
+
               <div className="flex flex-col text-xs">
                 <span className="mb-[6px]">
                   {searchData.top.objectType === "artist" ? "Nghệ sĩ " : ""}
@@ -35,7 +40,7 @@ const SearchAll = () => {
                   </span>
                 )}
               </div>
-            </div>
+            </Link>
           )}
           {searchData?.songs
             ?.filter((item, index) =>
@@ -57,7 +62,7 @@ const SearchAll = () => {
       </div>
       <div className="flex flex-col w-full">
         <h3 className="mb-5 text-lg font-bold">Bài hát</h3>
-        <div className="flex justify-between flex-wrap">
+        <div className="flex flex-wrap justify-between">
           {searchData?.songs?.slice(0, 6)?.map((item, index) => (
             <div
               key={item.encodeId}
@@ -65,14 +70,14 @@ const SearchAll = () => {
                 index % 2 !== 0 ? "pl-4" : "pr-4"
               }`}
             >
-              <List songData={item} isHideAlbum />
+              <List songData={item} isHideAlbum isHideNode />
             </div>
           ))}
         </div>
       </div>
       <div className="flex flex-col w-full">
         <h3 className="mb-5 text-lg font-bold">Playlist/Album</h3>
-        <div className="flex items-start justify-between gap-[28px]">
+        <div className="flex items-start justify-between">
           {searchData?.playlists?.slice(0, 5)?.map((item) => (
             <SectionItem key={item.encodeId} item={item} />
           ))}
@@ -80,9 +85,9 @@ const SearchAll = () => {
       </div>
       <div className="flex flex-col w-full">
         <h3 className="mb-5 text-lg font-bold">Nghệ Sĩ/OA</h3>
-        <div className="flex items-start justify-between gap-[28px]">
+        <div className="flex items-start gap-[28px]">
           {searchData?.artists?.slice(0, 5)?.map((item) => (
-            <Artist key={item.id} data={item}>
+            <Artist key={item.id} data={item} link={item.link}>
               ca sĩ
             </Artist>
           ))}

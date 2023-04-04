@@ -49,6 +49,7 @@ const Album = () => {
   return (
     <div className="relative flex w-full h-full gap-8 px-[59px] animate-scale-up-center">
       <div className="flex flex-col items-center flex-none w-1/4">
+        <div className="w-full h-[70px]"></div>
         <div className="relative w-full overflow-hidden cursor-pointer">
           <img
             src={playListData?.thumbnailM}

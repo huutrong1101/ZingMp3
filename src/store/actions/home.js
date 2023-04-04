@@ -23,3 +23,8 @@ export const getHome = () => async (dispatch) => {
     });
   }
 };
+
+export const zerioScrollTop = (flag) => ({
+  type: actionTypes.ZERO_SCROLLTOP,
+  flag,
+});

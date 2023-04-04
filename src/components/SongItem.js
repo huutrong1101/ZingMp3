@@ -23,8 +23,16 @@ const SongItem = ({
         style || "text-black hover:bg-main-200"
       }`}
       onClick={() => {
-        dispatch(actions.setCurSongId(songData?.encodeId));
+        dispatch(actions.setCurSongId(songData?.encodeId || songData?.sid));
         dispatch(actions.play(true));
+        dispatch(
+          actions.setRecent({
+            thumbnail: thumbnail,
+            title: title,
+            sid: songData?.encodeId || songData?.sid,
+            artists: artists,
+          })
+        );
       }}
     >
       <div className="flex gap-4">

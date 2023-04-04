@@ -32,6 +32,7 @@ import {
 import { CiRepeat, CiShuffle } from "react-icons/ci";
 import { TbRepeatOnce } from "react-icons/tb";
 import { ImBin } from "react-icons/im";
+import { GrClose } from "react-icons/gr";
 
 const icons = {
   MdOutlineLibraryMusic,
@@ -61,6 +62,7 @@ const icons = {
   BsFillVolumeDownFill,
   ImBin,
   AiOutlineUserAdd,
+  GrClose,
 };
 
 export default icons;

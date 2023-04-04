@@ -1,19 +1,32 @@
 import React from "react";
-import { NewRelease, Section, Slider, ChartSection } from "../../components";
+import { NewRelease, Section, Sliders, ChartSection } from "../../components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { chill, top100, hotAlbum, xone, newEveryDay, friday, weekChart } =
-    useSelector((state) => state.app);
+  const {
+    actists,
+    top100,
+    hotAlbum,
+    chill,
+    focus,
+    xone,
+    newEveryDay,
+    friday,
+    weekChart,
+    singers,
+  } = useSelector((state) => state.app);
 
   return (
     <div className="w-full overflow-y-auto">
-      <Slider />
-      <Section data={chill} />
-      {/* <Section data={newEveryDay} />
-      <Section data={friday} /> */}
+      <div className="w-full h-[70px]"></div>
+      <Sliders />
+      {actists && <Section data={actists} />}
+      {newEveryDay && <Section data={newEveryDay} />}
+      {friday && <Section data={friday} />}
       <NewRelease />
+      {chill && <Section data={chill} />}
+      {focus && <Section data={focus} />}
       <ChartSection />
       <div className="flex items-center px-[43px] w-f mt-12">
         {weekChart?.map((item) => (
@@ -30,10 +43,9 @@ const Home = () => {
           </Link>
         ))}
       </div>
-      <Section data={top100} />
-      <Section data={hotAlbum} />
+      {top100 && <Section data={top100} />}
+      {hotAlbum && <Section data={hotAlbum} />}
       {/* <Section data={xone} /> */}
-
       <div className="w-full h-[100px]"></div>
     </div>
   );
