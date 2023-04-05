@@ -6,7 +6,7 @@ import * as actions from "../store/actions";
 
 const { BsMusicNoteBeamed } = icons;
 
-const List = ({ songData, isHideAlbum, isHideNode }) => {
+const List = ({ songData, isHideAlbum, isHideNode, order }) => {
   const dispatch = useDispatch();
   return (
     <div
@@ -26,6 +26,21 @@ const List = ({ songData, isHideAlbum, isHideNode }) => {
       }}
     >
       <div className="flex items-center flex-1 gap-3">
+        {order && (
+          <div
+            className={`flex justify-center items-center text-[32px] text-main-300 flex-none w-[10%] ${
+              order === 1
+                ? "text-shadow-no1"
+                : order === 2
+                ? "text-shadow-no2"
+                : order === 3
+                ? "text-shadow-no3"
+                : "text-shadow-rest"
+            }`}
+          >
+            {order}
+          </div>
+        )}
         {!isHideNode && (
           <span>
             <BsMusicNoteBeamed />
@@ -46,7 +61,7 @@ const List = ({ songData, isHideAlbum, isHideNode }) => {
         </span>
       </div>
       {!isHideAlbum && (
-        <div className="flex items-center justify-center flex-1">
+        <div className="flex items-center justify-center flex-1 text-xs">
           {songData?.album?.title?.length > 30
             ? `${songData?.album?.title?.slice(0, 30)}...`
             : songData?.album?.title}

@@ -4,22 +4,17 @@ import { apiGetChartHome } from "../../apis";
 import { Line } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
 import _ from "lodash";
-import { List, SongItem } from "../../components";
+import { List, RankList, SongItem } from "../../components";
+import icons from "../../ultis/icons";
+
+const { BsFillPlayFill } = icons;
 
 const ZingchartData = () => {
   const [chartData, setchartData] = useState(null);
+
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    const fetchchartData = async () => {
-      const response = await apiGetChartHome();
-      if (response.data.err === 0) {
-        setchartData(response.data.data);
-      }
-    };
-
-    fetchchartData();
-  }, []);
+  const [isHoverPlay, setIsHoverPlay] = useState(false);
 
   const chartRef = useRef();
 
@@ -92,6 +87,17 @@ const ZingchartData = () => {
   };
 
   useEffect(() => {
+    const fetchchartData = async () => {
+      const response = await apiGetChartHome();
+      if (response.data.err === 0) {
+        setchartData(response.data.data);
+      }
+    };
+
+    fetchchartData();
+  }, []);
+
+  useEffect(() => {
     const labels = chartData?.RTChart?.chart?.times
       ?.filter((item) => +item.hour % 2 === 0)
       ?.map((item) => `${item.hour}:00`);
@@ -118,10 +124,8 @@ const ZingchartData = () => {
     }
   }, [chartData]);
 
-  console.log(data);
-
   return (
-    <div className="">
+    <div>
       <div className="flex flex-col">
         <div className="relative">
           <img
@@ -173,9 +177,53 @@ const ZingchartData = () => {
         </div>
       </div>
       <div className="px-[60px] mt-10">
-        {chartData?.RTChart?.items?.map((item) => (
-          <List songData={item} key={item.encodeId} />
-        ))}
+        <RankList data={chartData?.RTChart?.items} number={10} />
+      </div>
+      <div className="relative">
+        <img
+          src={bgchartData}
+          alt="bg-chartData"
+          className="object-cover w-full h-[700px] grayscale"
+        />
+        <div className="absolute top-0 bottom-0 left-0 right-0 bg-[rgba(206,217,217,.9)]"></div>
+        <div className="flex flex-col gap-4 mt-8 absolute top-0 left-0 right-0 bottom-1/2 px-[60px]">
+          <h3 className="font-bold text-[40px] text-main-500">
+            Bảng Xếp Hạng Tuần
+          </h3>
+          <div className="flex gap-4 h-fit">
+            {chartData?.weekChart &&
+              Object.entries(chartData?.weekChart)?.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex-1 bg-gray-200 rounded-md px-[10px] py-5"
+                >
+                  <div className="text-main-500 flex items-center pl-[40px] gap-2">
+                    <h3 className="text-[24px] font-bold ">
+                      {item[0] === "vn"
+                        ? "Việt Nam"
+                        : item[0] === "us"
+                        ? "US-UK"
+                        : "K-Pop"}
+                    </h3>
+                    <span className="relative p-2 bg-main-500 rounded-full cursor-pointer text-white">
+                      <div className="h-4 w-4"></div>
+                      <span className="absolute top-0 bottom-0 left-0 right-0 z-50 p-2 flex items-center justify-center">
+                        <BsFillPlayFill size={30} />
+                      </span>
+                    </span>
+                  </div>
+                  <div className="mt-4 h-fit">
+                    <RankList
+                      data={item[1]?.items}
+                      number={5}
+                      isHideAlbum
+                      link={item[1].link}
+                    />
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   );

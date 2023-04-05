@@ -16,16 +16,12 @@ const Public = () => {
 
   const [isShowRightSidebar, setIsShowRightSidebar] = useState(true);
 
-  const { singer } = useParams();
-
   const { isLoading, scrollTop } = useSelector((state) => state.app);
 
   const handleScrollTop = (e) => {
-    if (singer) {
-      e.target.scrollTop === 0
-        ? dispatch(actions.zerioScrollTop(true))
-        : dispatch(actions.zerioScrollTop(false));
-    }
+    e.target.scrollTop === 0
+      ? dispatch(actions.zerioScrollTop(true))
+      : dispatch(actions.zerioScrollTop(false));
   };
   return (
     <div className="relative flex flex-col w-full h-screen bg-main-300">
@@ -47,6 +43,8 @@ const Public = () => {
             <Header />
           </div>
 
+         
+
           <div className="flex-auto w-full">
             <Scrollbars
               onScroll={handleScrollTop}
@@ -54,6 +52,7 @@ const Public = () => {
               style={{ width: "100%", height: "100%" }}
             >
               <Outlet />
+              <div className="w-full h-[120px]"></div>
             </Scrollbars>
           </div>
         </div>
@@ -63,6 +62,7 @@ const Public = () => {
           </div>
         )}
       </div>
+
       <div className="fixed z-50 bottom-0 left-0 right-0 h-[90px]">
         <Player
           setIsShowRightSidebar={setIsShowRightSidebar}
