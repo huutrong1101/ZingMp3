@@ -58,9 +58,9 @@ const ChartSection = () => {
             });
           const tooltipModel = ctx.tooltip;
           setTooltipData(
-            data.find((i) =>
-              i.data.some(
-                (n) => n === +tooltipModel.body[0].lines[0].replace(",", "")
+            data?.find((i) =>
+              i?.data?.some(
+                (n) => n === +tooltipModel?.body[0]?.lines[0].replace(",", "")
               )
             )?.encodeId
           );

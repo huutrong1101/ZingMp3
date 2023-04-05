@@ -60,9 +60,9 @@ const ZingchartData = () => {
             });
           const tooltipModel = ctx.tooltip;
           setTooltipData(
-            data.find((i) =>
-              i.data.some(
-                (n) => n === +tooltipModel.body[0].lines[0].replace(",", "")
+            data?.find((i) =>
+              i?.data?.some(
+                (n) => n === +tooltipModel?.body[0]?.lines[0].replace(",", "")
               )
             )?.encodeId
           );
@@ -205,9 +205,9 @@ const ZingchartData = () => {
                         ? "US-UK"
                         : "K-Pop"}
                     </h3>
-                    <span className="relative p-2 bg-main-500 rounded-full cursor-pointer text-white">
-                      <div className="h-4 w-4"></div>
-                      <span className="absolute top-0 bottom-0 left-0 right-0 z-50 p-2 flex items-center justify-center">
+                    <span className="relative p-2 text-white rounded-full cursor-pointer bg-main-500">
+                      <div className="w-4 h-4"></div>
+                      <span className="absolute top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center p-2">
                         <BsFillPlayFill size={30} />
                       </span>
                     </span>

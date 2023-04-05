@@ -45,8 +45,6 @@ const Home = () => {
       </div>
       {top100 && <Section data={top100} />}
       {hotAlbum && <Section data={hotAlbum} />}
-      {/* <Section data={xone} /> */}
-      <div className="w-full h-[100px]"></div>
     </div>
   );
 };

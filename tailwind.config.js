@@ -31,8 +31,8 @@ module.exports = {
       keyframes: {
         "slide-right": {
           "0%": {
-            "-webkit-transform": " translateX(-500px);",
-            transform: "translateX(-500px);",
+            "-webkit-transform": " translateX(-350px);",
+            transform: "translateX(-350px);",
           },
           "100%": {
             "-webkit-transform": "translateX(0);",

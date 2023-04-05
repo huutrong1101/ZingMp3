@@ -16,7 +16,7 @@ const SearchAll = () => {
         <div className="flex gap-8 ">
           {searchData?.top && (
             <Link
-              to={searchData.artists[0].link}
+              to={searchData?.artists[0]?.link}
               className="cursor-pointer p-[10px] flex flex-1 gap-8 items-center bg-main-200 rounded-md"
             >
               <img
@@ -44,7 +44,7 @@ const SearchAll = () => {
           )}
           {searchData?.songs
             ?.filter((item, index) =>
-              [...Array(2).keys()].some((i) => i === index)
+              [...Array(2).keys()]?.some((i) => i === index)
             )
             ?.map((item) => (
               <div key={item.encodeId} className="flex-1">

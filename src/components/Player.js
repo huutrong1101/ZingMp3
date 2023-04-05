@@ -286,11 +286,11 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
 
         <span
           onClick={() => setIsShowRightSidebar((prev) => !prev)}
-          className={`p-1 rounded-sm cursor-pointer opacity-90 hover:opacity-100 ${
-            isShowRightSidebar ? "bg-main-500" : ""
+          className={`p-2 border rounded-full cursor-pointer opacity-90 hover:opacity-100 ${
+            isShowRightSidebar ? "bg-main-500  text-white" : ""
           }`}
         >
-          <BsMusicNoteList size={24} />
+          <BsMusicNoteList size={18} />
         </span>
       </div>
     </div>

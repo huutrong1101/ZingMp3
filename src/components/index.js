@@ -16,3 +16,4 @@ export { default as SectionItem } from "./SectionItem";
 export { default as ChartSection } from "./ChartSection";
 export { default as Artist } from "./Artist";
 export { default as RankList } from "./RankList";
+export { default as Button } from "./Button";
