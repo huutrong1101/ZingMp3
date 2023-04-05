@@ -31,10 +31,10 @@ const Artist = ({ data, link }) => {
           to={link}
           className="text-sm font-medium hover:underline hover:text-main-500"
         >
-          {data.name}
+          {data?.name}
         </Link>
         <span className="text-xs opacity-70">{`${handleNumber(
-          data.totalFollow
+          data?.totalFollow
         )} quan tâm`}</span>
         <button
           type="button"

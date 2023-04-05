@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useState } from "react";
 import List from "./List";
 import { useNavigate } from "react-router-dom";
-import path from "../ultis/path";
 
 const RankList = ({ data, isHideAlbum, number, link }) => {
   const [isShowFull, setIsShowFull] = useState(false);
@@ -22,13 +21,13 @@ const RankList = ({ data, isHideAlbum, number, link }) => {
       {songs?.map((item, index) => (
         <List
           songData={item}
-          key={item.encodeId}
+          key={item?.encodeId}
           isHideNode
           order={index + 1}
           isHideAlbum={isHideAlbum}
         />
       ))}
-      <div className="flex w-full justify-center items-center">
+      <div className="flex items-center justify-center w-full">
         <button
           type="button"
           className="px-6 my-4 py-2 border border-[#0E8080] rounded-l-full rounded-r-full text-main-500 text-sm hover:text-white hover:bg-main-500"

@@ -1,9 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  BsFillVolumeOffFill,
-  BsPlayFill,
-  BsVolumeDownFill,
-} from "react-icons/bs";
+import { BsPlayFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import * as apis from "../apis";
 import icons from "../ultis/icons";
@@ -14,14 +10,12 @@ import { toast } from "react-toastify";
 import { LoadingSong } from "./";
 
 const {
-  AiFillHeart,
   AiOutlineHeart,
   BsThreeDots,
   CiRepeat,
   MdSkipPrevious,
   MdSkipNext,
   CiShuffle,
-  BsFillPlayFill,
   BsPauseFill,
   TbRepeatOnce,
   BsMusicNoteList,
@@ -63,18 +57,18 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
         apis.apiGetSong(curSongId),
       ]);
       setIsLoadedSource(true);
-      if (res1.data.err === 0) {
-        setSongInfo(res1.data.data);
-        dispatch(actions.setCurSongData(res1.data.data));
+      if (res1?.data?.err === 0) {
+        setSongInfo(res1?.data?.data);
+        dispatch(actions.setCurSongData(res1?.data?.data));
       }
-      if (res2.data.err === 0) {
+      if (res2?.data?.err === 0) {
         audio.pause();
-        setAudio(new Audio(res2.data.data["128"]));
+        setAudio(new Audio(res2?.data?.data["128"]));
       } else {
         audio.pause();
         setAudio(new Audio());
         dispatch(actions.play(false));
-        toast.warning(res2.data.msg);
+        toast.warning(res2?.data?.msg);
         setCurSeconds(0);
         thumbRef.current.style.cssText = `right: 100%`;
       }
@@ -151,7 +145,7 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
       songs?.forEach((item, index) => {
         if (item.encodeId === curSongId) currentSongIndex = index;
       });
-      dispatch(actions.setCurSongId(songs[currentSongIndex + 1].encodeId));
+      dispatch(actions.setCurSongId(songs[currentSongIndex + 1]?.encodeId));
       dispatch(actions.play(true));
     }
   };
@@ -162,14 +156,14 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
       songs?.forEach((item, index) => {
         if (item.encodeId === curSongId) currentSongIndex = index;
       });
-      dispatch(actions.setCurSongId(songs[currentSongIndex - 1].encodeId));
+      dispatch(actions.setCurSongId(songs[currentSongIndex - 1]?.encodeId));
       dispatch(actions.play(true));
     }
   };
 
   const handleShuffle = () => {
     const randomIndex = Math.round(Math.random() * songs?.length) - 1;
-    dispatch(actions.setCurSongId(songs[randomIndex].encodeId));
+    dispatch(actions.setCurSongId(songs[randomIndex]?.encodeId));
     dispatch(actions.play(true));
   };
 

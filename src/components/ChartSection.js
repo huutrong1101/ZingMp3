@@ -53,10 +53,10 @@ const ChartSection = () => {
             data.push({
               encodeId: Object.keys(chart?.items)[i],
               data: chart?.items[Object.keys(chart?.items)[i]]
-                ?.filter((item) => +item.hour % 2 === 0)
-                ?.map((item) => item.counter),
+                ?.filter((item) => +item?.hour % 2 === 0)
+                ?.map((item) => item?.counter),
             });
-          const tooltipModel = ctx.tooltip;
+          const tooltipModel = ctx?.tooltip;
           setTooltipData(
             data?.find((i) =>
               i?.data?.some(
@@ -64,15 +64,15 @@ const ChartSection = () => {
               )
             )?.encodeId
           );
-          if (tooltipModel.opacity === 0) {
-            if (tooltip.opacity !== 0)
+          if (tooltipModel?.opacity === 0) {
+            if (tooltip?.opacity !== 0)
               setTooltip((prev) => ({ ...prev, opacity: 0 }));
             return;
           }
           const newTooltipData = {
             opacity: 1,
-            left: tooltipModel.caretX,
-            top: tooltipModel.caretY,
+            left: tooltipModel?.caretX,
+            top: tooltipModel?.caretY,
           };
           if (!_.isEqual(tooltip, newTooltipData)) setTooltip(newTooltipData);
         },
@@ -86,15 +86,15 @@ const ChartSection = () => {
 
   useEffect(() => {
     const labels = chart?.times
-      ?.filter((item) => +item.hour % 2 === 0)
-      ?.map((item) => `${item.hour}:00`);
+      ?.filter((item) => +item?.hour % 2 === 0)
+      ?.map((item) => `${item?.hour}:00`);
     const datasets = [];
     if (chart?.items) {
       for (let i = 0; i < 3; i++) {
         datasets.push({
           data: chart?.items[Object.keys(chart?.items)[i]]
-            ?.filter((item) => +item.hour % 2 === 0)
-            ?.map((item) => item.counter),
+            ?.filter((item) => +item?.hour % 2 === 0)
+            ?.map((item) => item?.counter),
           borderColor: i === 0 ? "#4a90e2" : i === 1 ? "#50e3c2" : "#e35050",
           tension: 0.2,
           borderWidth: 2,
@@ -132,10 +132,10 @@ const ChartSection = () => {
               ?.filter((i, index) => index < 3)
               ?.map((item, index) => (
                 <SongItem
-                  key={item.encodeId}
-                  thumbnail={item.thumbnail}
-                  title={item.title}
-                  artists={item.artistsNames}
+                  key={item?.encodeId}
+                  thumbnail={item?.thumbnail}
+                  title={item?.title}
+                  artists={item?.artistsNames}
                   songData={item}
                   order={index + 1}
                   percent={Math.round((+item.score * 100) / +chart?.totalScore)}
@@ -162,13 +162,13 @@ const ChartSection = () => {
             >
               <SongItem
                 thumbnail={
-                  rank?.find((i) => i.encodeId === tooltipData)?.thumbnail
+                  rank?.find((i) => i?.encodeId === tooltipData)?.thumbnail
                 }
-                title={rank?.find((i) => i.encodeId === tooltipData)?.title}
+                title={rank?.find((i) => i?.encodeId === tooltipData)?.title}
                 artists={
-                  rank?.find((i) => i.encodeId === tooltipData)?.artistsNames
+                  rank?.find((i) => i?.encodeId === tooltipData)?.artistsNames
                 }
-                songData={rank?.find((i) => i.encodeId === tooltipData)}
+                songData={rank?.find((i) => i?.encodeId === tooltipData)}
                 style="bg-white"
               />
             </div>

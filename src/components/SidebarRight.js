@@ -17,7 +17,7 @@ const SidebarRight = () => {
 
   const fetchDetailPlaylist = async () => {
     const response = await apiGetDetaiPlaylist(curAlbumId);
-    if (response.data?.err === 0) {
+    if (response?.data?.err === 0) {
       setPlayList(response?.data?.data?.song?.items);
     }
   };

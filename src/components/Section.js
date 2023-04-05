@@ -13,7 +13,7 @@ const Section = ({ data }) => {
           data?.items
             ?.slice(0, 5)
             .map((item) => (
-              <SectionItem key={item.encodeId} item={item} data={data} />
+              <SectionItem key={item?.encodeId} item={item} data={data} />
             ))}
       </div>
     </div>

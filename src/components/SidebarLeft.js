@@ -23,14 +23,14 @@ const SidebarLeft = () => {
       <div className="flex flex-col">
         {sidebarMenu.map((item) => (
           <NavLink
-            to={item.path}
-            key={item.path}
-            end={item.end}
+            to={item?.path}
+            key={item?.path}
+            end={item?.end}
             className={({ isActive }) =>
               isActive ? activeStyle : notACtiveStyle
             }
           >
-            {item.icons} <span>{item.text}</span>
+            {item?.icons} <span>{item?.text}</span>
           </NavLink>
         ))}
       </div>

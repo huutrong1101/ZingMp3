@@ -83,18 +83,18 @@ const Sliders = () => {
       }
     });
     if (step === 1) {
-      setMin((prev) => (prev === sliderEls.length - 1 ? 0 : prev + step));
-      setMax((prev) => (prev === sliderEls.length - 1 ? 0 : prev + step));
+      setMin((prev) => (prev === sliderEls?.length - 1 ? 0 : prev + step));
+      setMax((prev) => (prev === sliderEls?.length - 1 ? 0 : prev + step));
     }
     if (step === -1) {
-      setMin((prev) => (prev === 0 ? sliderEls.length - 1 : prev + step));
-      setMax((prev) => (prev === 0 ? sliderEls.length - 1 : prev + step));
+      setMin((prev) => (prev === 0 ? sliderEls?.length - 1 : prev + step));
+      setMax((prev) => (prev === 0 ? sliderEls?.length - 1 : prev + step));
     }
   };
 
   const handleClickBanner = (item) => {
     if (item?.type === 1) {
-      dispatch(actions.setCurSongId(item.encodeId));
+      dispatch(actions.setCurSongId(item?.encodeId));
       dispatch(actions.play(true));
       dispatch(actions.setPlayList(null));
     } else if (item?.type === 4) {
@@ -134,9 +134,9 @@ const Sliders = () => {
       <div onMouseLeave={handleHover} className="flex w-full gap-8 pt-8">
         {banner?.map((item, index) => (
           <img
-            key={item.encodeId}
+            key={item?.encodeId}
             alt=""
-            src={item.banner}
+            src={item?.banner}
             className={`cursor-pointer flex-1 object-contain w-[30%] rounded-lg slider-item ${
               index <= 2 ? "block" : "hidden"
             }`}
