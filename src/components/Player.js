@@ -283,13 +283,13 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
             )}
           </span>
           <div
-            className={`w-[130px] h-1 bg-white rounded-l-full rounded-r-full  ${
+            className={`w-[130px] h-1 bg-white rounded-l-full rounded-r-full ${
               isHoverVolume ? "hidden" : "relative"
             }`}
           >
             <div
               ref={volumeRef}
-              className="absolute left-0 bottom-0 top-0 bg-main-500 rounded-l-full rounded-r-full"
+              className="absolute top-0 bottom-0 left-0 rounded-l-full rounded-r-full bg-main-500"
             ></div>
           </div>
           <input
