@@ -43,11 +43,15 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
 
   const [isLoadedSource, setIsLoadedSource] = useState(true);
 
+  const [isHoverVolume, setIsHoverVolume] = useState(false);
+
   const [volume, setVolume] = useState(100);
 
   const thumbRef = useRef();
 
   const trackRef = useRef();
+
+  const volumeRef = useRef();
 
   useEffect(() => {
     const fetchDetailSong = async () => {
@@ -113,6 +117,12 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
 
   useEffect(() => {
     audio.volume = volume / 100;
+  }, [volume]);
+
+  useEffect(() => {
+    if (volumeRef.current) {
+      volumeRef.current.style.cssText = `right: ${100 - volume}%`;
+    }
   }, [volume]);
 
   const handleTogglePlayMusic = () => {
@@ -258,7 +268,11 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
         </div>
       </div>
       <div className="w-[30%] flex-auto flex items-center justify-end gap-4">
-        <div className="flex items-center gap-2">
+        <div
+          onMouseEnter={() => setIsHoverVolume(true)}
+          onMouseLeave={() => setIsHoverVolume(false)}
+          className="flex items-center gap-2"
+        >
           <span onClick={() => setVolume((prev) => (+prev === 0 ? 70 : 0))}>
             {+volume >= 50 ? (
               <BsFillVolumeUpFill />
@@ -268,6 +282,16 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
               <BsFillVolumeDownFill />
             )}
           </span>
+          <div
+            className={`w-[130px] h-1 bg-white rounded-l-full rounded-r-full  ${
+              isHoverVolume ? "hidden" : "relative"
+            }`}
+          >
+            <div
+              ref={volumeRef}
+              className="absolute left-0 bottom-0 top-0 bg-main-500 rounded-l-full rounded-r-full"
+            ></div>
+          </div>
           <input
             type="range"
             step={1}
@@ -275,6 +299,9 @@ const Player = ({ setIsShowRightSidebar, isShowRightSidebar }) => {
             max={100}
             value={volume}
             onChange={(e) => setVolume(e.target.value)}
+            className={`w-[130px] bg-main-500 ${
+              isHoverVolume ? "inline" : "hidden"
+            }`}
           />
         </div>
 

@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 const SearchAll = () => {
   const { searchData } = useSelector((state) => state.music);
 
-  console.log(searchData);
-
   return (
     <div className="flex flex-col w-full px-[60px] gap-[60px]">
       <div className="flex flex-col ">
